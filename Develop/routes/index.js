@@ -1,6 +1,6 @@
 var app = require("express").Router();
 var path = require("path");
-var db = require("../db/db.json")
+var db = require("../db/db.json");
 var fs = require("fs");
 
 
@@ -19,7 +19,7 @@ app.post("/api/notes", function(req, res) {
         id: Math.floor(Math.random() * 100),
         title: req.body.title,
         text: req.body.text
-    }
+    };
     db.push(newNote);
     fs.writeFileSync("./db/db.json", JSON.stringify(db), function(err, res) {
         if (err) {
@@ -27,12 +27,12 @@ app.post("/api/notes", function(req, res) {
         }
         console.log("POST", db, res);
     });
-    res.json(db)
+    res.json(db);
 });
 
 app.delete("/api/notes/:id", function(req, res) {
     var undeletedNotes = [];
-    console.log("DELETE", req.params.id)
+    console.log("DELETE", req.params.id);
     for (var i = 0; i < db.length; i++) {
         if (db[i].id != req.params.id) {
             undeletedNotes.push(db[i]);
@@ -43,10 +43,9 @@ app.delete("/api/notes/:id", function(req, res) {
         if (err) {
             throw err;
         }
-
     });
-    console.log("Delete", db)
-    res.json(db)
+    console.log("Delete", db);
+    res.json(db);
 });
 app.get("*", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/index.html"));
