@@ -3,38 +3,7 @@ const $noteText = $(".note-textarea");
 const $saveNoteBtn = $(".save-note");
 const $newNoteBtn = $(".new-note");
 const $noteList = $(".list-container .list-group");
-var express = require("express");
-var path = require("path");
 
-var app = express();
-var PORT = process.env.PORT || 3000;
-
-// Sets up the Express app to handle data parsing
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
-app.get("*", function(req, res) {
-    res.sendFile(path.join(__dirname, "index.html"));
-});
-
-app.get("/notes", function(req, res) {
-    res.sendFile(path.join(__dirname, "notes.html"));
-});
-
-app.get("/api/notes", function(req, res) {
-    return res.json();
-});
-
-app.post("/api/notes", function(req, res) {
-    var newNote = req.body;
-    console.log(newNote);
-    activeNotes.push(newNote);
-    res.json(newNote);
-});
-
-app.delete("/api/notes/:id", function(req, res) {
-
-});
 
 // activeNote is used to keep track of the note in the textarea
 let activeNote = {};
@@ -52,6 +21,7 @@ const saveNote = (note) => {
     return $.ajax({
         url: "/api/notes",
         data: note,
+
         method: "POST",
     });
 };
@@ -59,7 +29,7 @@ const saveNote = (note) => {
 // A function for deleting a note from the db
 const deleteNote = (id) => {
     return $.ajax({
-        url: "api/notes/" + id,
+        url: "/api/notes/" + id,
         method: "DELETE",
     });
 };
@@ -87,11 +57,13 @@ const handleNoteSave = function() {
         title: $noteTitle.val(),
         text: $noteText.val(),
     };
-
+    console.log(newNote)
     saveNote(newNote).then(() => {
+        console.log(newNote);
         getAndRenderNotes();
         renderActiveNote();
     });
+    getAndRenderNotes();
 };
 
 // Delete the clicked note
@@ -104,7 +76,7 @@ const handleNoteDelete = function(event) {
     if (activeNote.id === note.id) {
         activeNote = {};
     }
-
+    console.log("delete", note, note.id)
     deleteNote(note.id).then(() => {
         getAndRenderNotes();
         renderActiveNote();
