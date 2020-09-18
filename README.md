@@ -1,6 +1,7 @@
 # Note-Taker
 ## Description
-For this project, I created an application for note taking. It can be used to write, save, and delete the user's notes.
+For this project, I created an application for note taking. It can be used to write, save, and delete the user's notes.  
+
 
 ## Table Of Contents
 * [Usage](#Usage)
@@ -10,8 +11,6 @@ For this project, I created an application for note taking. It can be used to wr
 * [License](#License)
 * [Author](#Author)
 * [Questions](#Questions)
-* [Acknowledgments](#Acknowledgments)
-
 
 ## Usage
 To run the app, navigate to your working directory in the integrated terminal and type ```npm start```
@@ -72,13 +71,6 @@ Eric LaFontsee
 ## Questions
 GitHub: https://github.com/ericlafontsee   
 If you have any additional questions, please send them to: elafontsee@gmail.com
-
-
-## Acknowledgments
-Anthony Cooper - For help with debugging the javaScript.
-
-  
- 
 
 
 
