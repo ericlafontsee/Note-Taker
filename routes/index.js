@@ -10,7 +10,6 @@ app.get("/notes", function(req, res) {
 
 app.get("/api/notes", function(req, res) {
     db = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
-    console.log("GET", db);
     res.json(db);
 });
 
@@ -25,14 +24,12 @@ app.post("/api/notes", function(req, res) {
         if (err) {
             throw err;
         }
-        console.log("POST", db, res);
     });
     res.json(db);
 });
 
 app.delete("/api/notes/:id", function(req, res) {
     var undeletedNotes = [];
-    console.log("DELETE", req.params.id);
     for (var i = 0; i < db.length; i++) {
         if (db[i].id != req.params.id) {
             undeletedNotes.push(db[i]);
